@@ -1,6 +1,6 @@
 # jdemo-heap
 
-Aplicação Spring Boot para simular o consumo de heap em Java, permitindo testes de memória controlados e geração de **heap dumps** para auditoria.
+Aplicação Spring Boot para simular o consumo de heap em Java, permitindo testes de memória controlados e geração de **heap dumps** para estudo.
 
 ## Objetivo
 
