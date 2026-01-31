@@ -47,12 +47,14 @@ docker run --rm -m 512m \
   jdemo-heap
 ```
 ## Teste alto: Popular 80% do heap
+```bash
 docker run --rm -m 512m \
   -e JAVA_OPTS="-XX:+UseG1GC -XX:MaxRAMPercentage=80 -XX:+ExitOnOutOfMemoryError -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/app/dumps" \
   -p 8080:8080 \
   jdemo-heap
 ```
 ## Teste extremo: Popular 100% do heap (simulação de OOM)
+```bash
 docker run --rm -m 512m \
   -e JAVA_OPTS="-XX:+UseG1GC -XX:MaxRAMPercentage=100 -XX:+ExitOnOutOfMemoryError -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/app/dumps" \
   -p 8080:8080 \
