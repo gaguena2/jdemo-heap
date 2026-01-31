@@ -4,7 +4,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.gaguena.demo.heap.FullHeap;
-import com.gaguena.demo.heap.FullMetaspace;
 
 @SpringBootApplication
 public class Application {
@@ -14,7 +13,7 @@ public class Application {
         // vamos popular o heap
         FullHeap.toFill();
         // vamos popular o metaspace
-        FullMetaspace.fill();
+        //FullMetaspace.fill();
 
     }
 
