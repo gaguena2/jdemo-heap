@@ -72,3 +72,11 @@ docker run --rm -m 512m \
 - OOM é esperado
 - Heap dump é gerado automaticamente em /app/dumps para auditoria
 - Se estiver no kubernetes Evc pode vez de gravar em /app/dumps dentro do container, você monta um volume persistente nesse caminho.
+
+##Ex no k8s:
+
+| Teste   | Limits memory | MaxRAMPercentage | Heap máximo | Non-heap estimado | Overhead/threads/buffers | Margem restante | Observações                                                                             |
+| ------- | ------------- | ---------------- | ----------- | ----------------- | ------------------------ | --------------- | --------------------------------------------------------------------------------------- |
+| Seguro  | 7008 MB       | 60%              | 4205 MB     | 300 MB            | 300 MB                   | 1203 MB         | Heap popular gradualmente, sem risco de OOM                                             |
+| Alto    | 7008 MB       | 80%              | 5606 MB     | 300 MB            | 400 MB                   | 702 MB          | Aproxima-se do limite, útil para testar comportamento sob carga                         |
+| Extremo | 7008 MB       | 100%             | 7008 MB     | 300 MB            | 400 MB                   | 0 MB            | Simula OOM: heap consome todo limite do container, non-heap e overhead podem causar OOM |
