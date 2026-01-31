@@ -73,7 +73,7 @@ docker run --rm -m 512m \
 - Heap dump é gerado automaticamente em /app/dumps para auditoria
 - Se estiver no kubernetes Evc pode vez de gravar em /app/dumps dentro do container, você monta um volume persistente nesse caminho.
 
-## Ex no k8s:
+## Ex com 7008 MB :
 
 | Teste   | Limits memory | MaxRAMPercentage | Heap máximo | Non-heap estimado | Overhead/threads/buffers | Margem restante | Observações                                                                             |
 | ------- | ------------- | ---------------- | ----------- | ----------------- | ------------------------ | --------------- | --------------------------------------------------------------------------------------- |
