@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: jdemo-heap
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,heapdump
+  endpoint:
+    health:
+      show-details: always
+  metrics:
+    enable:
+      jvm.memory.used: true
+      jvm.memory.max: true
+      jvm.memory.committed: true
+      jvm.gc.pause: true
