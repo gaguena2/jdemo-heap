@@ -46,6 +46,10 @@ docker run --rm -m 512m \
   -p 8080:8080 \
   jdemo-heap
 ```
+- JVM vai usar até 60% do limite do container (~307 MB)
+- Heap é popular gradualmente
+- Nenhum OOM esperado
+
 ## Teste alto: Popular 80% do heap
 ```bash
 docker run --rm -m 512m \
@@ -53,6 +57,10 @@ docker run --rm -m 512m \
   -p 8080:8080 \
   jdemo-heap
 ```
+- JVM vai usar até 80% do limite do container (~410 MB)
+- Heap se aproxima do limite → útil para observar comportamento sob alta carga
+- OOM ainda não deve ocorrer, mas o heap ficará quase cheio
+
 ## Teste extremo: Popular 100% do heap (simulação de OOM)
 ```bash
 docker run --rm -m 512m \
@@ -60,3 +68,7 @@ docker run --rm -m 512m \
   -p 8080:8080 \
   jdemo-heap
 ```
+- JVM tenta usar todo o limite do container (512 MB)
+- OOM é esperado
+- Heap dump é gerado automaticamente em /app/dumps para auditoria
+- Se estiver no kubernetes Evc pode vez de gravar em /app/dumps dentro do container, você monta um volume persistente nesse caminho.
