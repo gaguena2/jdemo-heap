@@ -3,7 +3,6 @@ package com.gaguena.demo.heap;
 import java.lang.management.ManagementFactory;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public final class FullHeap {
 
@@ -15,7 +14,7 @@ public final class FullHeap {
             var heapUsage = memoryMXBean.getHeapMemoryUsage();
 
             long maxHeap = heapUsage.getMax(); // Xmx
-            long target = (long) (maxHeap * getMaxRamPercentage(1.0));//ou 100%
+            long target = (long) (maxHeap * getMaxRamPercentage());//ou 100%
 
             System.out.println("Max heap: " + toMB(maxHeap) + " MB");
             System.out.println("Target:   " + toMB(target) + " MB");
@@ -40,20 +39,16 @@ public final class FullHeap {
     private static long toMB(long bytes) {
         return bytes / 1024 / 1024;
     }
-    
-    private static double getMaxRamPercentage(double defaultValue) {
-        var runtimeMXBean = ManagementFactory.getRuntimeMXBean();
 
-        Optional<String> opt = runtimeMXBean.getInputArguments()
+    private static double getMaxRamPercentage() {
+        var runtimeMXBean = ManagementFactory.getRuntimeMXBean();
+        return runtimeMXBean.getInputArguments()
             .stream()
             .filter(arg -> arg.startsWith("-XX:MaxRAMPercentage="))
-            .findFirst();
+            .map(v -> {
+               var value = v.split("=")[1];
+               return Double.parseDouble(value) / 100.0;
+            }).findFirst().orElse(0.1);
 
-        if (opt.isPresent()) {
-            String value = opt.get().split("=")[1];
-            return Double.parseDouble(value) / 100.0;
-        }
-
-        return defaultValue;
     }
 }

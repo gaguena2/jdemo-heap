@@ -10,7 +10,7 @@ FROM eclipse-temurin:17-jdk-jammy
 
 WORKDIR /app
 
-COPY --from=build /app/target/jdemo-heap.jar ./jdemo-heap.jar
+COPY --from=build /app/target/jdemo-heap*.jar ./jdemo-heap.jar
 
 ENV JAVA_OPTS="-XX:+UseG1GC -XX:MaxRAMPercentage=60 -XX:+ExitOnOutOfMemoryError -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/app/dumps"
 
