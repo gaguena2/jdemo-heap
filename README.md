@@ -7,7 +7,7 @@ Aplicação Spring Boot para simular o consumo de heap em Java 17, permitindo te
 - Popular o heap da JVM até uma porcentagem configurável do máximo disponível (`MaxRAMPercentage`).  
 - Simular cenários de **uso normal**, **uso alto** e **OOM controlado**.  
 - Gerar **heap dumps** para análise e auditoria.  
-- Integrar com Docker para testes isolados ou Kubernetes.
+- Integrar com Docker para testes isolados.
 
 ---
 
