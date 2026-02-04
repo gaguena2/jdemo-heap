@@ -4,7 +4,7 @@ import java.lang.management.ManagementFactory;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class FullHeap {
+public class FullHeap {
 
     private static final List<byte[]> HOLDER = new ArrayList<>();
 
