@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jdemo-heap-deployment
+  namespace: gaguena-apps
+  labels:
+    app: jdemo-heap
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jdemo-heap
+  template:
+    metadata:
+      labels:
+        app: jdemo-heap 
+    spec:
+      containers:
+      - name: jdemo-heap
+        image: gaguena/jdemo-heap:1.0.0
+        imagePullPolicy: Never
+        env:
+            - name: _JAVA_OPTIONS
+              value: >
+                -XX:InitialRAMPercentage=30
+                -XX:MaxRAMPercentage=60
+                -XX:+UseG1GC
+                -XX:+ExitOnOutOfMemoryError
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080
